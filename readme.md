@@ -117,10 +117,28 @@ jconf load and merge configs in next order:
   
 ### Options
 
-You can pass additional options to jconf:
+You can pass additional options to jconf via global object:
 
 - `baseName` - Change default config file name prefix for files. Default: `config`
 - `configPath` - Change default config search path. Default: `script start dir`
 - `excludeConfigName` - After loading, jconf place to config object property `_configName` with loaded config name.
  if you don't need it, just set `true`. Default: `false`
 - `debug` - If true, jconf will be print debug output to via console.log. Default: `false`
+
+### Example
+
+```javascript
+'use strict';
+
+global.jconf = {
+  configPath: __dirname + '/config',
+  excludeConfigName: true
+}
+const config = require('jconf');
+```
+
+Why `global` ???!!!  
+jconf try to load your configs on first require and cache result config to nodejs modules cache. 
+It helps reduce file operations on application load or in dynamic require.  
+
+At this moment I don't have any idea, how change it and keep caching, pull requests are welcome!

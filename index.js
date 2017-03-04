@@ -10,7 +10,7 @@ class Config {
     this.extensions = ['js', 'json'];
     this.config = null;
     
-    options = options || {};
+    options = options || global['jconf'] || {};
     this.debug = options['debug'] || false;
     this.baseName = options['baseName'] || 'config';
     this.configPath = options['configPath'] || appPath;
@@ -22,7 +22,7 @@ class Config {
     
     return this.config;
   }
-
+  
   _findFile(baseName) {
     let found = false;
     this.extensions.forEach((ext) => {
@@ -79,6 +79,4 @@ class Config {
   }
 }
 
-module.exports = function(options) {
-  return new Config(options);
-};
+module.exports = new Config();

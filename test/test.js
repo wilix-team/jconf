@@ -1,5 +1,5 @@
 'use strict';
 
-const config = require('./../')({debug: true});
+const config = require('./../');
 
 console.log(config);
