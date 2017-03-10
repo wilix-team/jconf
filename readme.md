@@ -28,7 +28,7 @@ But, what about your local machine or other developers?
 
 Create file "**config.js**" or "**config.json**" in your project dir and just use:
 ```javascript
-const config = require('jconf')();
+const config = require('jconf');
 
 console.log(config); 
 /*
