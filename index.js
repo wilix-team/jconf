@@ -2,14 +2,14 @@
 
 const path = require('path');
 const fs = require('fs');
-const _ = require('lodash');
+const merge = require('lodash.merge');
 const appPath = process.cwd();
 
 class Config {
   constructor(options) {
     this.extensions = ['js', 'json'];
     this.config = null;
-    
+
     options = options || global['jconf'] || {};
     this.debug = options['debug'] || false;
     this.baseName = options['baseName'] || 'config';
@@ -55,7 +55,7 @@ class Config {
     
     if (localConfig && typeof localConfig === 'object') {
       this.debug && console.info('Use local config file');
-      _.merge(this.config, localConfig);
+      merge(this.config, localConfig);
       
       if (!this.excludeConfigName) {
         this.config._configName = 'local';
@@ -69,7 +69,7 @@ class Config {
       
       if (envConfig && typeof envConfig === 'object') {
         this.debug && console.info('Use env file', this.baseName + '.' + process.env.NODE_ENV, 'config file');
-        _.merge(this.config, envConfig);
+        merge(this.config, envConfig);
 
         if (!this.excludeConfigName) {
           this.config._configName = process.env.NODE_ENV;
