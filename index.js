@@ -79,4 +79,4 @@ class Config {
   }
 }
 
-module.exports = new Config();
+module.exports = (options = null) => new Config(options);
